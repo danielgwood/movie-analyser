@@ -347,6 +347,10 @@ body {
     text-align: center;
 }
 
+a {
+    color: #d92b3a;
+}
+
 h1, h2, h3 {
     font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
@@ -357,7 +361,7 @@ h1 {
     font-weight: normal;
     font-size: 2.2em;
     letter-spacing: 2px;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
 }
 
 h1::before, h1::after {
@@ -369,18 +373,20 @@ h1::before, h1::after {
 }
 
 h2 {
-    background-color: #292929;
     margin-bottom: 0.5em;
-    padding: 0.2em 0;
+    padding: 0.5em 0;
+    background-color: #292929;
+    font-size: 1.2em;
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
 }
 
 p {
+    margin-bottom: 1.5em;
     letter-spacing: 1px;
 }
 
 .stat {
-    color: #d92b3a;
+    font-weight: bolder;
 }
 
 .two-column {
@@ -392,9 +398,13 @@ p {
     column-gap: 20px;
 }
 
-ol {
+ol, ul {
     list-style-position: inside;
     line-height: 1.4;
+}
+
+ul {
+    list-style-type: none;
 }
 
 footer p {
@@ -404,6 +414,46 @@ footer p {
 
 footer p img {
     vertical-align: middle;
+}
+
+/* Content */
+h2 {
+    position: relative;
+}
+
+h2:after {
+    position: absolute;
+    top: -10px;
+    left: 2px;
+    width: 64px;
+    height: 64px;
+}
+
+.size h2:after {
+    content: url(chair.png);
+}
+
+.genres h2:after {
+    content: url(clapperboard.png);
+}
+
+.directors h2:after {
+    content: url(megaphone.png);
+}
+
+.actors h2:after {
+    content: url(reel.png);
+}
+
+.years h2:after {
+    content: url(camera.png);
+}
+
+.ratings h2:after {
+    content: url(popcorn.png);
+}
+
+.movie-poster {
 }
 
 /* Miscellaneous */

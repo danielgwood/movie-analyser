@@ -15,17 +15,33 @@
         </header>
         
         <section>
-            <p class="grid_8 prefix_2 suffix_2">There are <span class="stat">167 movies</span> in my collection, with a total running time of 
-            <span class="stat">20,484</span> minutes. That&apos;s <span class="stat">14.2 days</span> of back to back 
-            viewing!</p>
-        </section>
-        
-        <section id="genres">
-            <h2>Action! is my favourite genre</h2>
+            <div class="grid_4 size">
+                <h2>Viewing time</h2>
+                    
+                <p>There are <span class="stat">167 movies</span> in my collection, with a total running time of <span class="stat">20,484</span> minutes.</p>
+                <p>That&apos;s <span class="stat">14.2 days</span> of back&ndash;to&ndash;back viewing!</p>
+            </div>
+            
+            <div class="grid_8 genres">
+                <h2>Action! is my favourite genre</h2>
+            
+                <div id="genre-chart" class="grid_4 alpha"></div>
+
+                <div class="grid_4 omega">
+                    <h3>I'm not a fan of&hellip;</h3>
+                    <ul>
+                        <li>Romance</li>
+                        <li>Foreign film</li>
+                        <li>Documentary</li>
+                        <li>Animated</li>
+                        <li>Subtitled</li>
+                    </ul>
+                </div>
+            </div>
         </section>
         
         <section>
-            <div class="grid_4">
+            <div class="grid_4 directors">
                 <h2>Directors</h2>
                 <ol>
                     <li>Martin Scorsese (5 films)</li>
@@ -36,7 +52,7 @@
                 </ol>
             </div>
             
-            <div class="grid_8">
+            <div class="grid_8 actors">
                 <h2>Actresses/actors</h2>
                 <ol class="two-column">
                     <li>Desmond Llewelyn</li>
@@ -53,8 +69,10 @@
             </div>
         </section>
         
-        <section>
+        <section class="years">
             <h2>I really like the '80s</h2>
+            
+            <div id="years-chart"></div>
             
             <div class="grid_6">
                 <h3>Oldest film</h3>
@@ -67,21 +85,19 @@
             </div>
         </section>
         
-        <section>
+        <section class="ratings">
             <h2>Average rating: 7.9/10</h2>
             
             <div class="grid_6">
                 <img src="">
                 <h3>Best film</h3>
                 <h4>The Godfather</h4>
-                
             </div>
             
             <div class="grid_6">
                 <img src="">
                 <h3>Worst film</h3>
                 <h4>Starship Troopers 2: Hero of the Federation</h4>
-                
             </div>
         </section>
         
@@ -101,11 +117,11 @@
         ];
         
         var width = 300;
-        var height = 200;
+        var height = 170;
         var radius = Math.min(width, height) / 2;
         var color = d3.scale.category20();
 
-        var vis = d3.select("#genres")
+        var vis = d3.select("#genre-chart")
             .append("svg:svg")
             .data([genres])
             .attr("width", width)
