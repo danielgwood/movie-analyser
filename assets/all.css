@@ -408,8 +408,8 @@ ul {
 }
 
 footer p {
+    margin-bottom: 0.3em;
     font-size: 0.8em;
-
 }
 
 footer p img {
@@ -451,9 +451,6 @@ h2:after {
 
 .ratings h2:after {
     content: url(popcorn.png);
-}
-
-.movie-poster {
 }
 
 /* Miscellaneous */
