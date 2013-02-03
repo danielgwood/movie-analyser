@@ -453,6 +453,20 @@ h2:after {
     content: url(popcorn.png);
 }
 
+.movie {
+    float: left;
+    width: 450px;
+    padding: 15px;
+    text-align: left;
+}
+
+.movie-poster {
+    width: 69px;
+    height: 96px;
+    float: left;
+    margin-right: 1em;
+}
+
 /* Miscellaneous */
 .chromeframe {
     position: absolute;
