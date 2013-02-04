@@ -156,6 +156,117 @@
             .attr("text-anchor", "middle")
             .text(function(d, i) { return genres[i].label; }); 
         
+
+        
+
+
+
+
+
+        var width = 960;
+        var height = 200;
+        var barPadding = 1;
+        var bottomMargin = 40;
+        var scale = 20;
+
+        var dataset = [
+            { "label": 1960, "value": 1 },
+            { "label": 1961, "value": 0 },
+            { "label": 1962, "value": 1 },
+            { "label": 1963, "value": 2 },
+            { "label": 1964, "value": 1 },
+            { "label": 1965, "value": 0 },
+            { "label": 1966, "value": 1 },
+            { "label": 1967, "value": 0 },
+            { "label": 1968, "value": 2 },
+            { "label": 1969, "value": 0 },
+            { "label": 1970, "value": 0 },
+            { "label": 1971, "value": 0 },
+            { "label": 1972, "value": 1 },
+            { "label": 1973, "value": 0 },
+            { "label": 1974, "value": 0 },
+            { "label": 1975, "value": 1 },
+            { "label": 1976, "value": 1 },
+            { "label": 1977, "value": 3 },
+            { "label": 1978, "value": 1 },
+            { "label": 1979, "value": 1 },
+            { "label": 1980, "value": 1 },
+            { "label": 1981, "value": 1 },
+            { "label": 1982, "value": 1 },
+            { "label": 1983, "value": 2 },
+            { "label": 1984, "value": 1 },
+            { "label": 1985, "value": 1 },
+            { "label": 1986, "value": 0 },
+            { "label": 1987, "value": 5 },
+            { "label": 1988, "value": 1 },
+            { "label": 1989, "value": 0 },
+            { "label": 1990, "value": 2 },
+            { "label": 1991, "value": 0 },
+            { "label": 1992, "value": 1 },
+            { "label": 1993, "value": 0 },
+            { "label": 1994, "value": 1 },
+            { "label": 1995, "value": 6 },
+            { "label": 1996, "value": 2 },
+            { "label": 1997, "value": 4 },
+            { "label": 1998, "value": 1 },
+            { "label": 1999, "value": 1 },
+            { "label": 2000, "value": 5 },
+            { "label": 2001, "value": 6 },
+            { "label": 2002, "value": 5 },
+            { "label": 2003, "value": 4 },
+            { "label": 2004, "value": 2 },
+            { "label": 2005, "value": 2 },
+            { "label": 2006, "value": 5 },
+            { "label": 2007, "value": 3 },
+            { "label": 2008, "value": 3 },
+            { "label": 2009, "value": 4 },
+            { "label": 2010, "value": 5 },
+            { "label": 2011, "value": 3 },
+            { "label": 2012, "value": 1 }
+        ];
+
+        var svg = d3.select("#years-chart")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+        svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", function(d, i) {
+                return i * (width / dataset.length);
+            })
+            .attr("y", function(d) {
+                return (height - bottomMargin) - (d.value * scale);
+            })
+            .attr("width", width / dataset.length - barPadding)
+            .attr("height", function(d) {
+                return d.value * scale;
+            })
+            .attr("fill", function(d) {
+                return "rgb(80, 80, 80)";
+            });
+
+        svg.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .text(function(d) {
+                return d.label;
+            })
+            .attr("text-anchor", "middle")
+            .attr('transform', 'rotate(-90)')
+            .attr("x", function(d, i) {
+                return -(height-(bottomMargin/2));
+            })
+            .attr("y", function(d, i) {
+                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.3;
+            })
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "11px")
+            .attr("fill", "white");
+        
         </script>
     </body>
 </html>
