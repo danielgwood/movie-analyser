@@ -121,6 +121,7 @@
         var height = 170;
         var radius = Math.min(width, height) / 2;
         var color = d3.scale.category20();
+        var labelPad = 3;
 
         var vis = d3.select("#genre-chart")
             .append("svg:svg")
@@ -153,8 +154,24 @@
                 d.outerRadius = radius;
                 return "translate(" + arc.centroid(d) + ")";
             })
+            .attr('class', 'labeltext')
             .attr("text-anchor", "middle")
-            .text(function(d, i) { return genres[i].label; }); 
+            .text(function(d, i) { return genres[i].label; })
+            .attr("fill", "white")
+            .attr("font-size", "12px")
+            
+        arcs.insert("rect", ".labeltext")
+                .attr("width", function() { return d3.select(this.parentNode).select("text").node().getBBox().width+(labelPad*2); })
+                .attr("height", function() { return d3.select(this.parentNode).select("text").node().getBBox().height+(labelPad*2); })
+                .attr("x", function(d, i) {
+                    return arc.centroid(d)[0] - this.getAttribute('width')/2;
+                })
+                .attr("y", function(d) {
+                    return arc.centroid(d)[1] - this.getAttribute('height')/1.5;
+                })
+                .attr("fill", function(d) {
+                    return "rgba(20, 20, 20, 0.8)";
+                });
         
 
         
@@ -261,7 +278,7 @@
                 return -(height-(bottomMargin/2));
             })
             .attr("y", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.3;
+                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.4;
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
