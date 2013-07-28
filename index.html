@@ -2,288 +2,35 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        
+
         <title>My Movie Collection</title>
-        
+
         <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' />
-        <link rel="stylesheet" href="assets/all.css" />
+        <link rel="stylesheet" href="assets/css/all.css" />
     </head>
-    
+
     <body>
         <header>
             <h1>My Movie Collection</h1>
         </header>
-        
-        <section>
-            <div class="grid_4 size">
-                <h2>Viewing time</h2>
-                    
-                <p>There are <span class="stat">167 movies</span> in my collection, with a total running time of <span class="stat">20,484</span> minutes.</p>
-                <p>That&apos;s <span class="stat">14.2 days</span> of back&ndash;to&ndash;back viewing!</p>
-            </div>
-            
-            <div class="grid_8 genres">
-                <h2>Action! is my favourite genre</h2>
-            
-                <div id="genre-chart" class="grid_4 alpha"></div>
 
-                <div class="grid_4 omega">
-                    <h3>I'm not a fan of&hellip;</h3>
-                    <ul>
-                        <li>Romance</li>
-                        <li>Foreign film</li>
-                        <li>Documentary</li>
-                        <li>Animated</li>
-                        <li>Subtitled</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <section>
-            <div class="grid_4 directors">
-                <h2>Directors</h2>
-                <ol>
-                    <li>Martin Scorsese (5 films)</li>
-                    <li>John Glen (5 films)</li>
-                    <li>Ridley Scott (4 films)</li>
-                    <li>Christopher Nolan (4 films)</li>
-                    <li>Richard Donner (4 films)</li>
-                </ol>
-            </div>
-            
-            <div class="grid_8 actors">
-                <h2>Actresses/actors</h2>
-                <ol class="two-column">
-                    <li>Desmond Llewelyn</li>
-                    <li>Lois Maxwell</li>
-                    <li>Bernard Lee</li>
-                    <li>Sean Connery</li>
-                    <li>Samuel L. Jackson</li>
-                    <li>Roger Moore</li>
-                    <li>Jason Flemyng</li>
-                    <li>Walter Gotell</li>
-                    <li>Natalie Portman</li>
-                    <li>John Cleese</li>
-                </ol>
-            </div>
-        </section>
-        
-        <section class="years">
-            <h2>I really like the '80s</h2>
-            
-            <div id="years-chart"></div>
-            
-            <div class="grid_6">
-                <h3>Oldest film</h3>
-                <p>The Magnificent Seven (1960)</p>
-            </div>
-            
-            <div class="grid_6">
-                <h3>Newest film</h3>
-                <p>Chronicle (2012)</p>
-            </div>
-        </section>
-        
-        <section class="ratings">
-            <h2>Average rating: 7.9/10</h2>
-            
-            <div class="movie">
-                <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/7s07p5OVht3SLSxa7MAEt3Nzb5H.jpg" class="movie-poster">
-                <h3>Best film</h3>
-                <h4>The Godfather</h4>
-            </div>
-            
-            <div class="movie">
-                <img src="http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/7s07p5OVht3SLSxa7MAEt3Nzb5H.jpg" class="movie-poster">
-                <h3>Worst film</h3>
-                <h4>Starship Troopers 2: Hero of the Federation</h4>
-            </div>
-        </section>
-        
+        <noscript>
+            <p class="error">Sorry, this site requires JavaScript!</p>
+        </noscript>
+
+        <form id="search" method="get" action="fetch.php" style="display: none;">
+            <p>What kind of movie do you like? Who are your favourite actors and actresses?</p>
+            <p>Enter movie titles one-per-line. For best results use the US title, and include the year, e.g. "True Grit (2010)".</p>
+            <textarea type="text" name="titles" id="titles" rows="20" cols="60"></textarea>
+            <input type="submit" value="Tell me about my movies!" />
+        </form>
+
         <footer>
-            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="https://github.com/danielgwood/movie-analyser">movie-analyser</a>.</p>
+            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="https://github.com/danielgwood/movie-analyser">movie-analyser</a>.</p>
             <p>Icons by <a href="http://dribbble.com/SAMURAY">Nikolay Kuchkarov</a>. Additional thanks to <a href="https://github.com/glamorous">Jonas De Smet</a>.</p>
         </footer>
-        
-        <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script>
-            
-        var genres = [
-            {"label": "Action", "value": 130},
-            {"label": "Thriller", "value": 100},
-            {"label": "Adventure", "value": 90},
-            {"label": "Science Fiction", "value": 67},
-            {"label": "Drama", "value": 56}
-        ];
-        
-        var width = 300;
-        var height = 170;
-        var radius = Math.min(width, height) / 2;
-        var color = d3.scale.category20();
-        var labelPad = 3;
 
-        var vis = d3.select("#genre-chart")
-            .append("svg:svg")
-            .data([genres])
-            .attr("width", width)
-            .attr("height", height)
-            .append("svg:g")
-            .attr("transform", "translate(" + (width / 2) + "," + radius + ")");
-            
-        var arc = d3.svg.arc()
-            .outerRadius(radius)
-            .innerRadius(radius/2);
- 
-        var pie = d3.layout.pie()
-            .value(function(d) { return d.value; });
- 
-        var arcs = vis.selectAll("g.slice")
-            .data(pie)
-            .enter()
-                .append("svg:g")
-                .attr("class", "slice");
-                
-        arcs.append("svg:path")
-                .attr("fill", function(d, i) { return color(i); } )
-                .attr("d", arc);
- 
-        arcs.append("svg:text")
-            .attr("transform", function(d) {
-                d.innerRadius = radius/2;
-                d.outerRadius = radius;
-                return "translate(" + arc.centroid(d) + ")";
-            })
-            .attr('class', 'labeltext')
-            .attr("text-anchor", "middle")
-            .text(function(d, i) { return genres[i].label; })
-            .attr("fill", "white")
-            .attr("font-size", "12px")
-            
-        arcs.insert("rect", ".labeltext")
-                .attr("width", function() { return d3.select(this.parentNode).select("text").node().getBBox().width+(labelPad*2); })
-                .attr("height", function() { return d3.select(this.parentNode).select("text").node().getBBox().height+(labelPad*2); })
-                .attr("x", function(d, i) {
-                    return arc.centroid(d)[0] - this.getAttribute('width')/2;
-                })
-                .attr("y", function(d) {
-                    return arc.centroid(d)[1] - this.getAttribute('height')/1.5;
-                })
-                .attr("fill", function(d) {
-                    return "rgba(20, 20, 20, 0.8)";
-                });
-        
-
-        
-
-
-
-
-
-        var width = 960;
-        var height = 200;
-        var barPadding = 1;
-        var bottomMargin = 40;
-        var scale = 20;
-
-        var dataset = [
-            { "label": 1960, "value": 1 },
-            { "label": 1961, "value": 0 },
-            { "label": 1962, "value": 1 },
-            { "label": 1963, "value": 2 },
-            { "label": 1964, "value": 1 },
-            { "label": 1965, "value": 0 },
-            { "label": 1966, "value": 1 },
-            { "label": 1967, "value": 0 },
-            { "label": 1968, "value": 2 },
-            { "label": 1969, "value": 0 },
-            { "label": 1970, "value": 0 },
-            { "label": 1971, "value": 0 },
-            { "label": 1972, "value": 1 },
-            { "label": 1973, "value": 0 },
-            { "label": 1974, "value": 0 },
-            { "label": 1975, "value": 1 },
-            { "label": 1976, "value": 1 },
-            { "label": 1977, "value": 3 },
-            { "label": 1978, "value": 1 },
-            { "label": 1979, "value": 1 },
-            { "label": 1980, "value": 1 },
-            { "label": 1981, "value": 1 },
-            { "label": 1982, "value": 1 },
-            { "label": 1983, "value": 2 },
-            { "label": 1984, "value": 1 },
-            { "label": 1985, "value": 1 },
-            { "label": 1986, "value": 0 },
-            { "label": 1987, "value": 5 },
-            { "label": 1988, "value": 1 },
-            { "label": 1989, "value": 0 },
-            { "label": 1990, "value": 2 },
-            { "label": 1991, "value": 0 },
-            { "label": 1992, "value": 1 },
-            { "label": 1993, "value": 0 },
-            { "label": 1994, "value": 1 },
-            { "label": 1995, "value": 6 },
-            { "label": 1996, "value": 2 },
-            { "label": 1997, "value": 4 },
-            { "label": 1998, "value": 1 },
-            { "label": 1999, "value": 1 },
-            { "label": 2000, "value": 5 },
-            { "label": 2001, "value": 6 },
-            { "label": 2002, "value": 5 },
-            { "label": 2003, "value": 4 },
-            { "label": 2004, "value": 2 },
-            { "label": 2005, "value": 2 },
-            { "label": 2006, "value": 5 },
-            { "label": 2007, "value": 3 },
-            { "label": 2008, "value": 3 },
-            { "label": 2009, "value": 4 },
-            { "label": 2010, "value": 5 },
-            { "label": 2011, "value": 3 },
-            { "label": 2012, "value": 1 }
-        ];
-
-        var svg = d3.select("#years-chart")
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
-
-        svg.selectAll("rect")
-            .data(dataset)
-            .enter()
-            .append("rect")
-            .attr("x", function(d, i) {
-                return i * (width / dataset.length);
-            })
-            .attr("y", function(d) {
-                return (height - bottomMargin) - (d.value * scale);
-            })
-            .attr("width", width / dataset.length - barPadding)
-            .attr("height", function(d) {
-                return d.value * scale;
-            })
-            .attr("fill", function(d) {
-                return "rgb(80, 80, 80)";
-            });
-
-        svg.selectAll("text")
-            .data(dataset)
-            .enter()
-            .append("text")
-            .text(function(d) {
-                return d.label;
-            })
-            .attr("text-anchor", "middle")
-            .attr('transform', 'rotate(-90)')
-            .attr("x", function(d, i) {
-                return -(height-(bottomMargin/2));
-            })
-            .attr("y", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.4;
-            })
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "11px")
-            .attr("fill", "white");
-        
-        </script>
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="assets/js/movie-analyser.js"></script>
     </body>
 </html>
