@@ -181,6 +181,8 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
         </footer>
 
         <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script src="assets/js/d3.yearChart.js"></script>
+        <script src="assets/js/d3.pieChart.js"></script>
         <script>
 
         var genres = [
@@ -196,78 +198,10 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
 
             ?>
         ];
+        d3.pieChart.init('#genre-chart', 300, 170, genres);
 
-        var width = 300;
-        var height = 170;
-        var radius = Math.min(width, height) / 2;
-        var color = d3.scale.category20();
-        var labelPad = 3;
-
-        var vis = d3.select("#genre-chart")
-            .append("svg:svg")
-            .data([genres])
-            .attr("width", width)
-            .attr("height", height)
-            .append("svg:g")
-            .attr("transform", "translate(" + (width / 2) + "," + radius + ")");
-
-        var arc = d3.svg.arc()
-            .outerRadius(radius)
-            .innerRadius(radius/2);
-
-        var pie = d3.layout.pie()
-            .value(function(d) { return d.value; });
-
-        var arcs = vis.selectAll("g.slice")
-            .data(pie)
-            .enter()
-                .append("svg:g")
-                .attr("class", "slice");
-
-        arcs.append("svg:path")
-                .attr("fill", function(d, i) { return color(i); } )
-                .attr("d", arc);
-
-        arcs.append("svg:text")
-            .attr("transform", function(d) {
-                d.innerRadius = radius/2;
-                d.outerRadius = radius;
-                return "translate(" + arc.centroid(d) + ")";
-            })
-            .attr('class', 'labeltext')
-            .attr("text-anchor", "middle")
-            .text(function(d, i) { return genres[i].label; })
-            .attr("fill", "white")
-            .attr("font-size", "12px")
-
-        arcs.insert("rect", ".labeltext")
-                .attr("width", function() { return d3.select(this.parentNode).select("text").node().getBBox().width+(labelPad*2); })
-                .attr("height", function() { return d3.select(this.parentNode).select("text").node().getBBox().height+(labelPad*2); })
-                .attr("x", function(d, i) {
-                    return arc.centroid(d)[0] - this.getAttribute('width')/2;
-                })
-                .attr("y", function(d) {
-                    return arc.centroid(d)[1] - this.getAttribute('height')/1.5;
-                })
-                .attr("fill", function(d) {
-                    return "rgba(20, 20, 20, 0.8)";
-                });
-
-
-
-
-
-
-
-
-        var width = 940;
-        var height = 200;
-        var barPadding = 1;
-        var bottomMargin = 40;
-        var scale = 20;
-
-        var dataset = [
-            <?php
+        var years = [
+        <?php
 
             for($i = 0; $i < count($years); $i++) {
                 $isLast = $i == count($years)-1;
@@ -279,69 +213,7 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
 
             ?>
         ];
-
-        var svg = d3.select("#years-chart")
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
-
-        svg.selectAll("rect")
-            .data(dataset)
-            .enter()
-            .append("rect")
-            .attr("x", function(d, i) {
-                return i * (width / dataset.length);
-            })
-            .attr("y", function(d) {
-                return (height - bottomMargin) - (d.value * scale);
-            })
-            .attr("width", width / dataset.length - barPadding)
-            .attr("height", function(d) {
-                return d.value * scale;
-            })
-            .attr("fill", function(d) {
-                return "rgb(167, 34, 46)";
-            });
-
-        svg.selectAll("text")
-            .data(dataset)
-            .enter()
-            .append("text")
-            .text(function(d) {
-                return d.label;
-            })
-            .attr("text-anchor", "middle")
-            .attr('transform', 'rotate(-90)')
-            .attr("x", function(d, i) {
-                return -(height-(bottomMargin/2));
-            })
-            .attr("y", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.4;
-            })
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "10px")
-            .attr("fill", "white");
-
-        svg.append("g");
-        svg.select("g")
-            .selectAll("text")
-            .data(dataset)
-            .enter()
-            .append("text")
-            .text(function(d) {
-                return (d.value > 0) ? d.value : '';
-            })
-            .attr("text-anchor", "middle")
-            .attr("x", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 2.2;
-            })
-            .attr("y", function(d, i) {
-                return (height-(d.value * scale))-27;
-            })
-            .attr("font-family", "sans-serif")
-            .attr("font-size", "11px")
-            .attr("font-weight", "bold")
-            .attr("fill", "rgb(25, 25, 25)");
+        d3.yearChart.init('#years-chart', 940, 200, years);
 
         </script>
     </body>
