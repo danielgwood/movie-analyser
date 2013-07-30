@@ -11,11 +11,10 @@ Try it out here: http://danielgwood.com/lab/movies
 
 Installing
 ----------
-
-# Clone repo
-# Get an API key for TMDB: http://docs.themoviedb.apiary.io/
-# Add "apikey.php" at repo root, and define the `API_KEY` constant in there
-# At present, the storage mechanism is serialised text files. Make sure the path defined in `\lib\MovieAnalyser::$SAVE_DIR` is writable by PHP
+1. Clone repo
+2. Get an API key for TMDB: http://docs.themoviedb.apiary.io/
+3. Add "apikey.php" at repo root, and define the `API_KEY` constant in there
+4. At present, the storage mechanism is serialised text files. Make sure the path defined in `\lib\MovieAnalyser::$SAVE_DIR` is writable by PHP
 
 Contributing
 ------------
