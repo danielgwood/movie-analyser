@@ -213,7 +213,7 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
 
             ?>
         ];
-        d3.yearChart.init('#years-chart', 940, 200, years);
+        d3.yearChart.init('#years-chart', 940, 180, years);
 
         </script>
     </body>

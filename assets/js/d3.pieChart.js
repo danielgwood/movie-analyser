@@ -4,7 +4,6 @@ d3.pieChart = {
         var radius = Math.min(width, height) / 2;
         var color = d3.scale.category20();
         var labelPad = 3;
-
         var vis = d3.select(container)
             .append("svg:svg")
             .data([dataset])
@@ -13,6 +12,7 @@ d3.pieChart = {
             .append("svg:g")
             .attr("transform", "translate(" + (width / 2) + "," + radius + ")");
 
+        // Pie slices
         var arc = d3.svg.arc()
             .outerRadius(radius)
             .innerRadius(radius/2);
@@ -30,6 +30,7 @@ d3.pieChart = {
                 .attr("fill", function(d, i) { return color(i); } )
                 .attr("d", arc);
 
+        // Labels
         arcs.append("svg:text")
             .attr("transform", function(d) {
                 d.innerRadius = radius/2;
@@ -42,6 +43,7 @@ d3.pieChart = {
             .attr("fill", "white")
             .attr("font-size", "12px")
 
+        // Background for labels
         arcs.insert("rect", ".labeltext")
                 .attr("width", function() { return d3.select(this.parentNode).select("text").node().getBBox().width+(labelPad*2); })
                 .attr("height", function() { return d3.select(this.parentNode).select("text").node().getBBox().height+(labelPad*2); })
