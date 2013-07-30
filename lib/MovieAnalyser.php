@@ -8,9 +8,9 @@
 class MovieAnalyser
 {
     /**
-     * Write data here.
+     * Write data here (relative to repo root, no trailing slash)
      */
-    public static $SAVE_DIR = '..\data';
+    public static $SAVE_DIR = 'data';
 
     /**
      * Get details of a movie.
@@ -154,7 +154,7 @@ class MovieAnalyser
     public static function getSet($id)
     {
         // Load all the existing data
-        $filename = self::$SAVE_DIR . \DIRECTORY_SEPARATOR . $id;
+        $filename = self::getDir() . $id;
         if(file_exists($filename)) {
             $data = @unserialize(file_get_contents($filename));
             if($data) {
@@ -187,6 +187,16 @@ class MovieAnalyser
      */
     public static function saveSet($id, $data)
     {
-        file_put_contents(self::$SAVE_DIR . \DIRECTORY_SEPARATOR . $id, serialize($data));
+        file_put_contents(self::getDir() . $id, serialize($data));
+    }
+
+    /**
+     * Get the file save location.
+     *
+     * @return string
+     */
+    private static function getDir()
+    {
+        return dirname(__DIR__) . \DIRECTORY_SEPARATOR . self::$SAVE_DIR . \DIRECTORY_SEPARATOR;
     }
 }

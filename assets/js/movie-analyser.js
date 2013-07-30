@@ -16,7 +16,7 @@
     {
         $('#indicator').html('Compiling results&hellip;');
 
-        window.location.href = '/show.php?id=' + setId;
+        window.location.href = 'show.php?id=' + setId;
     }
 
     function searchTitle(film)
