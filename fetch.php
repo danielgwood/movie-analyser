@@ -15,8 +15,9 @@ require 'lib/TMDb.php';
 // API configuration
 require 'apikey.php';
 
-// Lib
+// Libs
 require 'lib/MovieAnalyser.php';
+require 'lib/Helper.php';
 
 if(isset($_GET['title']) && !empty($_GET['title'])) {
     // Get some uniqueish ID to store the data under
@@ -40,6 +41,8 @@ if(isset($_GET['title']) && !empty($_GET['title'])) {
         // Found! Save it
         MovieAnalyser::addToSet($setId, $details);
         $response['ok'] = 1;
+        $response['title']  = Helper::escape($details['title']);
+        $response['poster']  = $details['poster'];
 
     } else {
         // Doh
