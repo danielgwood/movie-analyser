@@ -20,7 +20,7 @@ Contributing
 ------------
 I'm particularly interested to see more data/statistics derived (there's a whole load more data in TMDB which I'm not even accessing). Please forgive any code wibbles - I left this project unfinished for a while, and couldn't actually remember what I was doing when I came back to it.
 
-See the official TODO list: https://github.com/danielgwood/movie-analyser/TODO.md
+See the official TODO list: https://github.com/danielgwood/movie-analyser/blob/master/TODO.md
 
 License
 -------
