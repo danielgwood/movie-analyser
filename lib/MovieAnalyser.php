@@ -129,10 +129,12 @@ class MovieAnalyser
             $set['genres'][$genre]++;
         }
 
-        if(!isset($set['directors'][$movie['director']])) {
-            $set['directors'][$movie['director']] = 0;
+        if(isset($movie['director'])) {
+            if(!isset($set['directors'][$movie['director']])) {
+                $set['directors'][$movie['director']] = 0;
+            }
+            $set['directors'][$movie['director']]++;
         }
-        $set['directors'][$movie['director']]++;
 
         foreach($movie['cast'] as $castMember) {
             if(!isset($set['cast'][$castMember])) {
