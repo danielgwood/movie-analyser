@@ -542,7 +542,7 @@ textarea, input {
 textarea {
     display: block;
     width: 692px;
-    height: 10em;
+    height: 15em;
     max-width: 692px;
     margin: 0 auto 0.5em;
     padding: 4px;
@@ -554,10 +554,6 @@ textarea {
     background: -ms-linear-gradient(top,  #f2efef 1%,#ffffff 50%);
     background: linear-gradient(to bottom,  #f2efef 1%,#ffffff 50%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2efef', endColorstr='#ffffff',GradientType=0 );
-}
-
-textarea:focus {
-    height: 18em;
 }
 
 .cta {
