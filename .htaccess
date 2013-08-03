@@ -1,2 +1,10 @@
 RewriteEngine On
+
 RewriteRule ^([0-9a-f]+)$   show.php?id=$1  [NC,L]
+
+RewriteRule ^favicon\.ico assets/favicon.ico [L]
+
+RewriteRule ^apple-touch-icon-57x57\.png assets/apple-touch-icon-57x57.png [L]
+RewriteRule ^apple-touch-icon-72x72\.png assets/apple-touch-icon-72x72.png [L]
+RewriteRule ^apple-touch-icon-114x114\.png assets/apple-touch-icon-114x114.png [L]
+RewriteRule ^apple-touch-icon-144x144\.png assets/apple-touch-icon-144x144.png [L]
