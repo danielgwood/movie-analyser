@@ -96,6 +96,8 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
     </head>
 
     <body>
+        <a href="https://github.com/danielgwood/movie-analyser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
         <header>
             <h1>My Movie Collection</h1>
         </header>
