@@ -28,7 +28,7 @@ d3.yearChart = {
             .attr("y", function(d) {
                 return (height - 40) - (d.value * scale);
             })
-            .attr("width", width / dataset.length - barPadding)
+            .attr("width", width / dataset.length)
             .attr("height", function(d) {
                 return d.value * scale;
             })
@@ -47,7 +47,7 @@ d3.yearChart = {
             .attr("text-anchor", "middle")
             .attr('transform', 'rotate(-90)')
             .attr("x", function(d, i) {
-                return -(height-(bottomMargin/2));
+                return -(height-(40/2));
             })
             .attr("y", function(d, i) {
                 var barWidth = width / dataset.length;
