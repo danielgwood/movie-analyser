@@ -22,7 +22,7 @@
         $('#indicator').html('Compiling results&hellip;');
 
         setTimeout(function() {
-            window.location.href = 'show.php?id=' + setId;
+            window.location.href =  window.location.href + setId;
         }, 800);
     }
 
