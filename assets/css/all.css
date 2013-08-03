@@ -352,7 +352,7 @@ a {
     color: #d92b3a;
 }
 
-h1, h2, h3, input[type=submit] {
+h1, h2, h3 {
     font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-transform: uppercase;
 }
@@ -473,6 +473,47 @@ h2:after {
     margin-bottom: 1em;
 }
 
+.share-buttons {
+    position: relative;
+}
+
+.fb-share {
+    position: relative;
+    top: -9px;
+    display: inline-block;
+    height: 26px;
+    margin: 0;
+    padding: 0 7px 0 30px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 26px;
+    text-decoration: none;
+    color: #333333;
+    background-color: #f8f8f8;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#dedede));
+    background-image: -moz-linear-gradient(top,#fff,#dedede);
+    background-image: -o-linear-gradient(top,#fff,#dedede);
+    background-image: -ms-linear-gradient(top,#fff,#dedede);
+    background-image: linear-gradient(top,#fff,#dedede);
+    border: #ccc solid 1px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5);
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.fb-share i {
+    position: absolute;
+    top: 5px;
+    left: 7px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+    background: transparent url(../img/fb.png) no-repeat left top;
+}
+
 /* Search form */
 form {
     padding: 1em 0;
@@ -514,7 +555,8 @@ textarea {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2efef', endColorstr='#ffffff',GradientType=0 );
 }
 
-input[type=submit] {
+.cta {
+
     width: 700px;
     padding: 12px;
     border: 2px solid #bc0b1a;
@@ -527,8 +569,11 @@ input[type=submit] {
     background: linear-gradient(to bottom,  #bc0b1a 1%,#9b010e 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bc0b1a', endColorstr='#9b010e',GradientType=0 );
     color: #fff;
+    font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.8);
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .progress {

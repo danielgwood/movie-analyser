@@ -3,7 +3,21 @@
     <head>
         <meta charset="utf-8" />
 
-        <title>My Movie Collection</title>
+        <meta name="keywords" content="movies, cinema, films, analyser, statistics, infographic, tastes, genres, danielgwood, daniel, wood">
+        <meta name="description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+        <meta property="og:title" content="Movie Analyser">
+        <meta property="og:description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+        <meta itemprop="name" content="Movie Analyser">
+        <meta itemprop="description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+
+        <meta property="og:email" content="dan@danielgwood.com"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="assets/img/social-thumb.png" />
+        <meta property="og:site_name" content="danielgwood.com" />
+        <meta property="fb:admins" content="512686422" />
+        <meta itemprop="image" content="assets/img/social-thumb.png">
+
+        <title>Movie Analyser</title>
 
         <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC' rel='stylesheet' />
         <link rel="stylesheet" href="assets/css/all.css" />
@@ -11,22 +25,22 @@
 
     <body>
         <header>
-            <h1>My Movie Collection</h1>
+            <h1>Movie Analyser</h1>
         </header>
 
         <noscript>
-            <p class="error">Sorry, this site requires JavaScript!</p>
+            <p class="error">Sorry, this site requires JavaScript! Please enable it in your browser, or if you're using something old, get Chrome.</p>
         </noscript>
 
         <form id="search" method="get" action="fetch.php" style="display: none;">
             <p>What kind of movie do you like? Who are your favourite actors and actresses?</p>
             <p>Enter movie titles one-per-line. For best results use the US title, and include the year, e.g. "True Grit (2010)".</p>
             <textarea type="text" name="titles" id="titles" rows="20" cols="60"></textarea>
-            <input type="submit" value="Tell me about my movies!" />
+            <input type="submit" class="cta" value="Tell me about my movies!" />
         </form>
 
         <footer>
-            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="https://github.com/danielgwood/movie-analyser">movie-analyser</a>.</p>
+            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="http://danielgwood.com/lab/movies">Movie Analyser</a>.</p>
             <p>Icons by <a href="http://dribbble.com/SAMURAY">Nikolay Kuchkarov</a>. Additional thanks to <a href="https://github.com/glamorous">Jonas De Smet</a>.</p>
         </footer>
 

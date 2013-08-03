@@ -11,6 +11,10 @@
 require 'lib/MovieAnalyser.php';
 require 'lib/Helper.php';
 
+// Defines the location of the index
+define('BASE_URL', 'http://movieanalyser.loc/');
+
+// Get the data
 $set = MovieAnalyser::getSet($_GET['id']);
 
 // Simple numbers
@@ -70,6 +74,20 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+
+        <meta name="keywords" content="movies, cinema, films, analyser, statistics, infographic, tastes, genres, danielgwood, daniel, wood">
+        <meta name="description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+        <meta property="og:title" content="Movie Analyser">
+        <meta property="og:description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+        <meta itemprop="name" content="Movie Analyser">
+        <meta itemprop="description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
+
+        <meta property="og:email" content="dan@danielgwood.com"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="assets/img/social-thumb.png" />
+        <meta property="og:site_name" content="danielgwood.com" />
+        <meta property="fb:admins" content="512686422" />
+        <meta itemprop="image" content="assets/img/social-thumb.png">
 
         <title>My Movie Collection</title>
 
@@ -173,10 +191,34 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
                 <h4><?php echo Helper::escape($set['worstFilm']['title']); ?></h4>
                 <span class="movie-rating"><?php echo Helper::escape($set['worstFilm']['rating']); ?>/10</span>
             </div>
+
+            <p>&nbsp;</p>
+            <?php if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == BASE_URL): ?>
+                <p>Think your friends can do better?</p>
+
+                <div class="share-buttons">
+                    <a href="#share"
+                      class="fb-share"
+                      onclick="
+                        window.open(
+                          'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+                          'facebook-share-dialog',
+                          'width=626,height=436');
+                        return false;">
+                        <i></i>Share on Facebook
+                    </a>
+
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Check out my movie collection!" data-via="danielgwood" data-size="large" data-count="none" data-hashtags="movieanalyser">Tweet</a>
+                </div>
+
+            <?php else: ?>
+                <p>Think your taste is better?</p>
+                <a class="cta" href="<?php echo BASE_URL; ?>">Try it yourself!</a>
+            <?php endif; ?>
         </section>
 
         <footer>
-            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="https://github.com/danielgwood/movie-analyser">movie-analyser</a>.</p>
+            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="http://danielgwood.com/lab/movies">Movie Analyser</a>.</p>
             <p>Icons by <a href="http://dribbble.com/SAMURAY">Nikolay Kuchkarov</a>. Additional thanks to <a href="https://github.com/glamorous">Jonas De Smet</a>.</p>
         </footer>
 
@@ -216,5 +258,6 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
         d3.yearChart.init('#years-chart', 940, 180, years);
 
         </script>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
     </body>
 </html>

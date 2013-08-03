@@ -1,4 +1,3 @@
-* Share on Facebook/Twitter buttons
 * Better URLs for the show page (cut out the show.php?id= part)
 * Auto-suggest films when entering
 * Fork on GitHub ribbon

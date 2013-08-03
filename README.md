@@ -15,6 +15,7 @@ Installing
 2. Get an API key for TMDB: http://docs.themoviedb.apiary.io/
 3. Add "apikey.php" at repo root, and define the `API_KEY` constant in there
 4. At present, the storage mechanism is serialised text files. Make sure the path defined in `\lib\MovieAnalyser::$SAVE_DIR` is writable by PHP
+5. Set the `BASE_URL` constant at the top of `show.php` to whatever URL your installation is
 
 Contributing
 ------------
