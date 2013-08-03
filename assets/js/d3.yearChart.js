@@ -52,7 +52,8 @@ d3.yearChart = {
                 return -(height-(bottomMargin/2));
             })
             .attr("y", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 1.4;
+                var barWidth = width / dataset.length;
+                return (((i + 1) * barWidth) - (barWidth / 2) + 2);
             })
             .attr("font-family", "sans-serif")
             .attr("font-size", "10px")
@@ -68,9 +69,10 @@ d3.yearChart = {
             .text(function(d) {
                 return (d.value > 0) ? d.value : '';
             })
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "left")
             .attr("x", function(d, i) {
-                return i * (width / dataset.length) + (width / dataset.length - barPadding) / 2.2;
+                var barWidth = width / dataset.length;
+                return (((i + 1) * barWidth) - (barWidth / 2)) - 3;
             })
             .attr("y", function(d, i) {
                 return (height-(d.value * scale))-27;
