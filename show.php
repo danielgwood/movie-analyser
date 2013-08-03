@@ -219,7 +219,7 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
         </section>
 
         <footer>
-            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="http://danielgwood.com/lab/movies">Movie Analyser</a>.</p>
+            <p>Data courtesy of <a href="http://www.themoviedb.org/"><img src="assets/img/tmdb.png" alt="TheMovieDb.org" /></a>, generated using <a href="http://movie-analyser.com">Movie Analyser</a>.</p>
             <p>Icons by <a href="http://dribbble.com/SAMURAY">Nikolay Kuchkarov</a>. Additional thanks to <a href="https://github.com/glamorous">Jonas De Smet</a>.</p>
         </footer>
 
