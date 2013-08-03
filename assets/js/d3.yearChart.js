@@ -1,16 +1,14 @@
 d3.yearChart = {
     init: function(container, width, height, dataset)
     {
-        var barPadding = 1;
-
-        var bottomMargin = 40;
+        // Need to know the biggest year to render chart
         var biggestYear = 0;
         for(var i in dataset) {
             if(dataset[i].value > biggestYear) {
                 biggestYear = dataset[i].value;
             }
         }
-        var scale = Math.floor((height-bottomMargin) / biggestYear);
+        var scale = Math.floor((height-40) / biggestYear);
 
         // Get the SVG element to render in
         var svg = d3.select(container)
@@ -28,7 +26,7 @@ d3.yearChart = {
                 return i * (width / dataset.length);
             })
             .attr("y", function(d) {
-                return (height - bottomMargin) - (d.value * scale);
+                return (height - 40) - (d.value * scale);
             })
             .attr("width", width / dataset.length - barPadding)
             .attr("height", function(d) {
