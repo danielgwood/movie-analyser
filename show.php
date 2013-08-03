@@ -82,10 +82,9 @@ $averageRating = (array_sum($set['ratings']) / count($set['ratings']));
         <meta itemprop="name" content="Movie Analyser">
         <meta itemprop="description" content="What kind of movies do you like? Who are your favourite actors, actresses and directors? Find out now!">
 
-        <meta property="og:email" content="dan@danielgwood.com"/>
         <meta property="og:type" content="website" />
         <meta property="og:image" content="assets/img/social-thumb.png" />
-        <meta property="og:site_name" content="danielgwood.com" />
+        <meta property="og:site_name" content="movie-analyser.com" />
         <meta property="fb:admins" content="512686422" />
         <meta itemprop="image" content="assets/img/social-thumb.png">
 

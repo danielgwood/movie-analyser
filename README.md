@@ -7,7 +7,7 @@ This extends on an earlier experiment, https://github.com/danielgwood/movie-anal
 
 Demo
 ----
-Try it out here: http://danielgwood.com/lab/movies
+Try it out here: http://movie-analyser.com/
 
 Installing
 ----------
