@@ -22,7 +22,14 @@ class MovieAnalyser
     {
         $tmdb = new TMDb(\API_KEY);
 
-        $searchResult = $tmdb->searchMovie($title);
+        // Title may include an embedded year, eg "Something (2001)"
+        $year = null;
+        if(preg_match_all('/^(.+)\(([0-9]{4})\)\s*$/i', $title, $matches)) {
+            $title = trim($matches[1][0]);
+            $year = (int)$matches[2][0];
+        }
+
+        $searchResult = $tmdb->searchMovie($title, 1, false, $year);
         if($searchResult && isset($searchResult['results']) && count($searchResult['results']) > 0) {
             // Found a film, yeah!
             $movieId = $searchResult['results'][0]["id"];
