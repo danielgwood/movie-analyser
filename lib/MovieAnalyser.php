@@ -35,6 +35,7 @@ class MovieAnalyser
                 'date' => strtotime($movieDetails['release_date']),
                 'runtime' => (int)$movieDetails['runtime'],
                 'rating' => $movieDetails['vote_average'],
+                'ratings' => $movieDetails['vote_count'],
                 'genres' => array(),
                 'poster' => $tmdb->getImageUrl($movieDetails['poster_path'], TMDb::IMAGE_POSTER, 'w92'),
                 'cast' => array()
@@ -102,7 +103,7 @@ class MovieAnalyser
             );
         }
 
-        if($movie['rating'] !== 0) {
+        if($movie['ratings'] > 0) {
             if(!$set['bestFilm'] || $set['bestFilm']['rating'] < $movie['rating']) {
                 $set['bestFilm'] = array(
                     'date' => $movie['date'],
