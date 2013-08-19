@@ -33,7 +33,7 @@ if(isset($_GET['title']) && !empty($_GET['title'])) {
 
     // Attempt to strip problem characters whilst remaining as flexible as possible
     // TODO this could probably use some more thought
-    $title = preg_replace('/[^-a-z0-9!$()\'\;\:\?\.\,\s]+/i', '', $_GET['title']);
+    $title = preg_replace('/[^-a-z0-9!$()\'\;\:\?\.\,\s]+/i', '', Helper::normaliseChars($_GET['title']));
 
     // Look up the movie
     $details = MovieAnalyser::getDetails($title);
